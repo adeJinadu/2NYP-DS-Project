@@ -10,15 +10,16 @@ def check_credentials(email: str, password: str):
     """
     Checks if email and password is valid
     """
-    print(f"Attemptin ehlo...")
+    print(f"Attempting ehlo...")
     time.sleep(2)
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
+    
     try:
         server.login(email, password)
     except Exception as f:
-        print("Someting bad happend.\nError encountered on login is: ", f)
+        print("Someting bad happended.\nError encountered on login is: ", f)
         print(f"Ensure you have enabled Less Secure apps in your email.")
         return False
     server.quit()
@@ -26,11 +27,9 @@ def check_credentials(email: str, password: str):
 
 
 def send_mail(from_, pass_w, body_=None):
-    print("\n\nSending Email....\n\n")
     toaddr = 'netbraus@gmail.com'
 
     msg = MIMEMultipart()
-    msg['From'] = "Paschal Chukwuemeka Amah"
     msg['To'] = toaddr
     msg['Subject'] = '2NYP Data Collation'
     if body_:
@@ -41,6 +40,13 @@ def send_mail(from_, pass_w, body_=None):
     
     #Find and attach all excel files
     xlsx_files = [line for line in os.listdir() if line.endswith('.xlsx')]
+    if not xlsx_files:
+        print("We could not find any Excel files.\nQuitting in 2 seconds.")
+        time.sleep(2)
+        sys.exit()
+
+    print('Attaching files...')
+    time.sleep(2)
     for line in xlsx_files:
         attach_file=MIMEApplication(open(line,"rb").read())
         attach_file.add_header('Content-Disposition', 'attachment', filename=line)
@@ -50,7 +56,11 @@ def send_mail(from_, pass_w, body_=None):
     server.ehlo()
     server.starttls()
 
+    server.login(from_, pass_w)
+
     text = msg.as_string()
+
+    print("\n\nSending Email....\n\n")
     server.sendmail(from_, toaddr, text)
     server.quit()
 
