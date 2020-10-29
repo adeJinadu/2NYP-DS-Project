@@ -19,10 +19,10 @@ from tweepy import Stream
 import json, time
 from http.client import IncompleteRead
 
-access_token = OAUTH_TOKEN = "51103332-f0u3XRJ2mRP2LI0j6EckV3wBKlIQm43BvTAavoVRX"
-access_token_secret = OAUTH_TOKEN_SECRET = "XfF8l5BnYGquqLxnHCZ3jBBBZo91RFLoyKqqBEogWDmG6"
-consumer_key = APP_KEY = "YSbe5TBgDGOGUrFUnumXyYPZa"
-consumer_secret = APP_SECRET = "b5vflcv8sTS8K9Aaj3Jt2kvHPWfLYAI81998aASYr6NVx3pIiJ"
+access_token = OAUTH_TOKEN = "Yours"
+access_token_secret = OAUTH_TOKEN_SECRET = "Yours"
+consumer_key = APP_KEY = "Yours"
+consumer_secret = APP_SECRET = "Yours"
 
 auth =  tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token,access_token_secret)
