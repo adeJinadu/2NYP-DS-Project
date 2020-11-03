@@ -9,8 +9,8 @@ Updated on Sat Oct 31, 2020 11:14:29
 ##1. This Script finds and assembles all Excel files sent over by streamers which are products of meating.py
 ##2. The joined dataset is written to our database and the excel files moved to 'Warehoused' folder
 ##################################################################################
-
-
+print("Onboarding script pipline for 2NYP DS Project v1")
+print("Importing modules...")
 import pyodbc, time, os, sys
 import pandas as pd
 from datetime import datetime
@@ -67,6 +67,7 @@ combo = pd.concat(dfs).reset_index(drop=True)
 combo = combo.rename(columns = {'id':'tweet_id'})
 combo.keys()
 
+print("Commencing write to warehouse")
 #Write data to LifeRenewals table and replace if exists
 try:
     combo.to_sql('_2NYP', engine, if_exists='append', index=False)
