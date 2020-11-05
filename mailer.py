@@ -88,7 +88,7 @@ else:
 #Get creds and see if they are correct
 print(f"Please enter your email address:")
 sender = input('>>> ')
-print(f"Please enter your email address:")
+print(f"Please enter your email password:")
 password = getpass('>>> ')
 
 knocking = check_credentials(sender, password)
